@@ -14,6 +14,20 @@ random.seed(a=None, version=2)
 set_verbosity(INFO)
 
 
+def check_for_leakage(df1, df2, patient_col):    
+    df1_patients_unique = set(df1[patient_col])
+    df2_patients_unique = set(df2[patient_col])
+    patients_in_both_groups = df1_patients_unique.intersection(df2_patients_unique)
+
+    # leakage contains true if there is patient overlap, otherwise false.
+    if patients_in_both_groups:
+        leakage = True # boolean (true if there is at least 1 patient in both groups)
+    else:
+        leakage = False
+    return leakage
+
+    
+
 def get_mean_std_per_batch(image_path, df, H=320, W=320):
     sample_data = []
     for idx, img in enumerate(df.sample(100)["Image Index"].values):
