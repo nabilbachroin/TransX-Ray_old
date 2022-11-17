@@ -1,3 +1,4 @@
 # TransX-Ray
 
-Try basic dataset for X-Ray Classification
+Try basic dataset for Multilabel X-Ray Classification
+Use Swin Transformer
